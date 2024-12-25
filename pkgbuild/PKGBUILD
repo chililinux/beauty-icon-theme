@@ -1,0 +1,38 @@
+# Maintainer: Vilmar Catafesta <vcatafesta@gmail.com>
+
+pkgname=chili-beauty-icons
+pkgdesc="Icons BeautyFolders"
+# depends=('')
+# makedepends=('')
+# conflicts=('')
+provides=("$pkgname")
+replaces=("chili-void-beauty-icons")
+pkgver=$(date +%Y%m%d)
+pkgrel=$(date +%H%M)
+arch=('any')
+license=('GPL3')
+url="https://github.com/chililinux/$pkgname"
+source=("git+${url}.git")
+source=(
+	"BeautyFolders-icons.tar.zst"
+	"BeautyLine-icons.tar.zst"
+)
+md5sums=('SKIP' 'SKIP')
+if [ -e "${pkgname}.install" ]; then
+	install=${pkgname}.install
+elif [ -e "pkgbuild.install" ]; then
+	install=pkgbuild.install
+fi
+
+package() {
+	cd "$srcdir"
+
+	# Create destination directories
+	mkdir -p "${pkgdir}/usr/share/icons"
+	mkdir -p "${pkgdir}/usr/share/themes"
+	mkdir -p "${pkgdir}/usr/share/wallpapers"
+
+	# Extract themes and icons
+	tar -I zstd -xf "BeautyFolders-icons.tar.zst" -C "${pkgdir}/usr/share/icons"
+	tar -I zstd -xf "BeautyFolders-icons.tar.zst" -C "${pkgdir}/usr/share/icons"
+}
