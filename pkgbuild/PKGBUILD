@@ -33,6 +33,6 @@ package() {
 	mkdir -p "${pkgdir}/usr/share/wallpapers"
 
 	# Extract themes and icons
-	tar -I zstd -xf "BeautyFolders-icons.tar.zst" -C "${pkgdir}/usr/share/icons"
-	tar -I zstd -xf "BeautyFolders-icons.tar.zst" -C "${pkgdir}/usr/share/icons"
+	tar -I zstd -xf "BeautyFolders-icons.tar.zst" --no-same-owner -C "${pkgdir}/usr/share/icons"
+	tar -I zstd -xf "BeautyFolders-icons.tar.zst" --no-same-owner -C "${pkgdir}/usr/share/icons"
 }
