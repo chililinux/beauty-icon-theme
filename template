@@ -1,5 +1,5 @@
 # Template file for 'chili-beauty-icons'
-pkgname=chili-beauty-icons
+pkgname=beauty-icon-theme
 version=1.0.0
 revision=1
 noarch=true

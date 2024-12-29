@@ -1,3 +1,3 @@
-# chili-beauty-icons
+# beauty-icons
 
 Icons BeautyFolders
