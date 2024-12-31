@@ -25,14 +25,34 @@ elif [ -e "pkgbuild.install" ]; then
 fi
 
 package() {
-	cd "$srcdir"
+	# Verify default folder
+	if [ -d "${srcdir}/${pkgname}/${pkgname}" ]; then
+		InternalDir="${srcdir}/${pkgname}/${pkgname}"
+	else
+		InternalDir="${srcdir}/${pkgname}"
+	fi
 
-	# Create destination directories
-	mkdir -p "${pkgdir}/usr/share/icons"
-	mkdir -p "${pkgdir}/usr/share/themes"
-	mkdir -p "${pkgdir}/usr/share/wallpapers"
+	# Copy files
+	if [ -d "${InternalDir}/usr" ]; then
+		cp -r "${InternalDir}/usr" "${pkgdir}/"
+	fi
 
-	# Extract themes and icons
-	tar -I zstd -xf "BeautyFolders-icons.tar.zst" --no-same-owner -C "${pkgdir}/usr/share/icons"
-	tar -I zstd -xf "BeautyFolders-icons.tar.zst" --no-same-owner -C "${pkgdir}/usr/share/icons"
+	if [ -d "${InternalDir}/etc" ]; then
+		cp -r "${InternalDir}/etc" "${pkgdir}/"
+	fi
+
+	if [ -d "${InternalDir}/opt" ]; then
+		cp -r "${InternalDir}/opt" "${pkgdir}/"
+	fi
+
+	#	cd "$srcdir"
+	#
+	#	# Create destination directories
+	#	mkdir -p "${pkgdir}/usr/share/icons"
+	#	mkdir -p "${pkgdir}/usr/share/themes"
+	#	mkdir -p "${pkgdir}/usr/share/wallpapers"
+	#
+	#	# Extract themes and icons
+	#	tar -I zstd -xf "BeautyFolders-icons.tar.zst" --no-same-owner -C "${pkgdir}/usr/share/icons"
+	#	tar -I zstd -xf "BeautyFolders-icons.tar.zst" --no-same-owner -C "${pkgdir}/usr/share/icons"
 }
