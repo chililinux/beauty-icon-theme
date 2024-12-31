@@ -13,11 +13,12 @@ arch=('any')
 license=('GPL3')
 url="https://github.com/chililinux/$pkgname"
 source=("git+${url}.git")
+md5sums=('SKIP')
 #source=(
 #	"BeautyFolders-icons.tar.zst"
 #	"BeautyLine-icons.tar.zst"
 #)
-md5sums=('SKIP' 'SKIP')
+#md5sums=('SKIP' 'SKIP')
 if [ -e "${pkgname}.install" ]; then
 	install=${pkgname}.install
 elif [ -e "pkgbuild.install" ]; then
